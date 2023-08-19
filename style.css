@@ -4,6 +4,9 @@
     font-family :'Poppins',sans-serif;
     box-sizing: border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     background: #080808 ;
     color: #fff;
@@ -303,4 +306,8 @@ form .btn2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 20px;
 }
-
+#msg{
+    color: #32de26;
+    margin-top: -40px;
+    display: block;
+}
