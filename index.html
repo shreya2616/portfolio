@@ -13,11 +13,11 @@
         <nav>
             <img src="images/logo.png" class="logo">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <div class="header-text">
@@ -167,19 +167,21 @@
                 <a href="images/SHREYA RESUME.pdf" download class="btn btn2">Download Resume</a>
             </div>
             <div class="contact-right">
-                <form>
-                    <input type="text" name="name" placeholder="your name" required> 
-                    <input type="email" name="email" placeholder="your email" required>
-                    <textarea name="message" rows="6" placeholder="your message"></textarea>
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="your name" required> 
+                    <input type="email" name="Email" placeholder="your email" required>
+                    <textarea name="Message" rows="6" placeholder="your message"></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
                 </form>
+                <span id="msg"></span>
             </div>
         </div>
     </div>
+</div>
     <div class="copyright">
         <p>Copyright @ Shreya.</p>
     </div>
-</div>
+
 
 
 <script>
@@ -199,5 +201,26 @@
         
     }
 </script>
+
+  
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbztCitp_MErxBfx1gFI2DJVWepE0-CtPbQfLsx-2RQw0AlgyR8I-PvQ7wJwQLkG4sEbjA/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg=document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => 
+        {
+            msg.innerHTML="message has been sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 </body>
 </html>
